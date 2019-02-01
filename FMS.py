@@ -77,12 +77,7 @@ scrollbar.pack(side = tk.RIGHT, fill=tk.Y)
 
 # Add the first text box
 text1 = tk.Text(window, height = 20, width = 200)
-#text1.insert(tk.INSERT, "Paste text Here!")
 text1.insert(tk.INSERT, "Paste text Here!\n")
-text1.insert(tk.INSERT, "adas Paste text Heres! Paste text Heres Paste text Heres Paste text Heres\n")
-text1.insert(tk.INSERT, "ddd  Paste text Here! Paste text Heresdfg\n")
-text1.insert(tk.INSERT, "adaaassdd Paste text Here! 23\n")
-text1.insert(tk.INSERT, "SA3355 Paste text Here 234324!\n")
 text1.pack()
 
 
@@ -98,9 +93,8 @@ lbl2.pack()
 
 
 # Add the second text box
-text2 = tk.Text(window, height = int(.05*global_height), width = int(.95*global_width))
-#text2.insert(tk.INSERT, "Search here!")
-text2.insert(tk.INSERT, "Paste text Here")
+text2 = tk.Text(window, height = 5, width = int(.95*global_width))
+text2.insert(tk.INSERT, "Search here!")
 text2.pack()
 
 
