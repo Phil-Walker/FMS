@@ -34,30 +34,33 @@ def searchTheText():
 	searchText.strip()
 	searchLength = len(searchText)
 	
-	# Search through the text for the key phrase
-	for i in range(1,int(text1.index('end').split('.')[0])-1):
-		line = text1.get(str(str(i) + '.' + str(0)),str(str(i) + '.' + 'end'))
-		if searchText in line:
-			found += 1
-			# Determine the start point of the match, and highlight the match
-			j = line.index(searchText) 
-			pos1 = str(str(i) + '.' + str(j))
-			pos2 = str(str(i) + '.' + str(j+searchLength))
-			text1.tag_add("highlight", pos1, pos2)
-			text1.tag_config("highlight", background="yellow", foreground="blue")
+	if searchLength == 0:
+		print('Add a search term')
+	else:
+		# Search through the text for the key phrase
+		for i in range(1,int(text1.index('end').split('.')[0])-1):
+			line = text1.get(str(str(i) + '.' + str(0)),str(str(i) + '.' + 'end'))
+			if searchText in line:
+				found += 1
+				# Determine the start point of the match, and highlight the match
+				j = line.index(searchText) 
+				pos1 = str(str(i) + '.' + str(j))
+				pos2 = str(str(i) + '.' + str(j+searchLength))
+				text1.tag_add("highlight", pos1, pos2)
+				text1.tag_config("highlight", background="yellow", foreground="blue")
 
-			#Check if the substring is still present in the current line
-			testline = line[j+searchLength:]
-			pastIndex = j+searchLength
-			while searchText in testline:
-				if len(testline) > 0:
-					j = testline.index(searchText) 
-					pos1 = str(str(i) + '.' + str(j+pastIndex))
-					pos2 = str(str(i) + '.' + str(j+searchLength+pastIndex))
-					text1.tag_add("highlight", pos1, pos2)
-					text1.tag_config("highlight", background="yellow", foreground="blue")
-					testline = testline[j+searchLength:]
-					pastIndex += j+searchLength
+				#Check if the substring is still present in the current line
+				testline = line[j+searchLength:]
+				pastIndex = j+searchLength
+				while searchText in testline:
+					if len(testline) > 0:
+						j = testline.index(searchText) 
+						pos1 = str(str(i) + '.' + str(j+pastIndex))
+						pos2 = str(str(i) + '.' + str(j+searchLength+pastIndex))
+						text1.tag_add("highlight", pos1, pos2)
+						text1.tag_config("highlight", background="yellow", foreground="blue")
+						testline = testline[j+searchLength:]
+						pastIndex += j+searchLength
 	
 	# Highlight the search text if it is not found in the pasted text
 	if found == 0:
